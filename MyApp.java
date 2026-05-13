@@ -31,13 +31,13 @@ public class MyApp
                 sc.nextLine();
                 
                 //학생 이름 입력받기
-                System.out.print("학생 이름을 입력해주세요. : ");
+                System.out.print("학생 이름을 입력해주세요 : ");
                 String studentName = sc.nextLine();
                 
                 //학번 입력받기 (문자 입력 시 오류메세지 출력하고 다시 입력하게 하기)
                 int studentId;
                 while (true){
-                    System.out.print("학번을 입력해주세요. : ");
+                    System.out.print("학번을 입력해주세요 : ");
                     studentId = 0;
                     try {
                         studentId = sc.nextInt();
@@ -56,7 +56,7 @@ public class MyApp
                 
                 //과목 입력 받기 -> 0입력 시 과목 입력 받는 것을 종료하고 학생 정보 입력으로 돌아감
                 while (true){
-                    System.out.print("과목을 입력하시겠습니까? (1: 예 / 0: 종료)");
+                    System.out.print("과목을 입력하시겠습니까? (1: 예 / 0: 종료) :");
                     int addSubject = sc.nextInt();
                     if (addSubject == 0)
                         break;
@@ -64,13 +64,13 @@ public class MyApp
                         sc.nextLine();
                         
                         //과목 이름 입력받기
-                        System.out.print("과목 이름을 입력해주세요. : ");
+                        System.out.print("과목 이름을 입력해주세요 : ");
                         String subjectName = sc.nextLine();
                         
                         //과목에 대한 점수 입력받기 (0~100 사이의 입력을 벗어나면 오류메세지 출력 / 숫자가 아닌 입력을 받으면 오류메세지 출력)
                         while (true){
                             try {
-                                System.out.print("점수를 입력해 주세요. : ");
+                                System.out.print("점수를 입력해 주세요 : ");
                                 int score = sc.nextInt();
                                 sc.nextLine();
                                 if (score >= 0 && score <= 100){

@@ -95,7 +95,7 @@ public class MyApp
         }
         //전체 학생 성적 출력 후 전체 학생 수 출력 -> 전체 석차, 최고/최저, 평균점수 출력에 사용
         printAll(studentList, studentCount);
-        System.out.println("전체 학생 수는" + Student.totalStudents + "명 입니다.");
+        System.out.println("전체 학생 수는 " + Student.totalStudents + "명 입니다.");
         
         //더 이상 입력받을 것이 없으면 Scanner 종료하기
         sc.close();

@@ -21,7 +21,27 @@ public class MyApp
     public static void printSubjectStatistics(Student[] studentList, int studentCount){ //과목별 통계 출력 메소드
         System.out.println("===== 과목별 통계 =====");
         
+        
+        //전체학생에서 과목 목록 수집
+        String[] allSubjects = new String[1000];
+        int subjectTotal = 0;
+        
         for(int i = 0; i < studentList[0].getSubjectCount(); i++){
+            for(int k = 0; k < studentList[i].getSubjectCount(); k++){
+                String stuName = studentList[i].getSubject(k);
+                int exists = 0;
+                for(int s = 0; s < subjectTotal; s++){
+                    if(allSubjects[s].equals(stuName)){
+                        exists = 1;
+                        break;
+                    }
+                }
+                if(exists == 0)
+                    allSubjects[subjectTotal++] = stuName;
+            }
+        }
+        
+        for(int i = 0; i < subjectTotal; i++){
             String subjectName = studentList[0].getSubject(i); //과목 이름 저장
             
             int maxScore = -1;
@@ -65,9 +85,8 @@ public class MyApp
             System.out.println(subjectName + "최고점 :" + maxScore + "점, 학생 이름:" + maxStudentName);
             System.out.println(subjectName + "최저점 : " + minScore + "점, 학생 이름:" + minStudentName);
             System.out.println(subjectName + "평균점수 : " + averageScore + "점");
-            System.out.println();
+            System.out.println(); 
         }
-        System.out.println();
     }
     
     public static void printNameAndGPA(Student[] studentList, int studentCount){

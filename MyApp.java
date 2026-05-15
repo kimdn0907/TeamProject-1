@@ -72,7 +72,13 @@ public class MyApp
         System.out.println();
     }
 
-    
+    public static void printNameAndGPA(Student[] studentList, int studentCount){
+        System.out.println("===== 전체 학생 학점 요약 =====");
+        for(int i = 0; i < studentCount; i ++){
+            double gpa = cutTwo(studentList[i].getGPA());
+            
+        }
+    }
     
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);

@@ -15,8 +15,6 @@ public class Student
     private int count = 0;
     static int totalStudents = 0;
     
-    private int rank = 1; //석차
-    
     public Student(String name, int studentId) {
         this.name = name;
         this.studentId = studentId;
@@ -62,44 +60,5 @@ public class Student
         gpa = (int)(gpa * 100) / 100.0;
         System.out.println("최종 학점 : " + gpa);
         System.out.println();
-    }
-    
-    public void displayResultWithRank() {
-        System.out.println("===== 결과 ======");
-        System.out.println("이름 :" + name);
-        System.out.println("~~~");
-        System.out.println("석차 : " + rank + "등");
-        System.out.println();
-    }
-    public int getsubjectCount() {
-        return count;
-    }
-    public String getName(){
-        return name;
-    }
-    public int getScore(int index){
-        return scores[index];
-    }
-    public String getSubject(int index){
-        return subjects[index];
-    }
-    public void setRank(int rank){
-        this.rank = rank;
-    }
-    public int getRank(){
-        return rank;
-    }
-    public static void calculateRank(Student[] studentList, int studentCount){
-        for(int i = 0; i < studentCount; i++){
-            int rank = 1;
-            
-            for (int j = 0; j < studentCount; j++) {
-                if(studentList[i].getGPA() < studentList[j].getGPA()){
-                    rank++;
-                }
-            }
-            
-            studentList[i].setRank(rank);
-        }
     }
 }

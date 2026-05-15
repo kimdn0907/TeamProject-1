@@ -26,7 +26,7 @@ public class MyApp
         String[] allSubjects = new String[1000];
         int subjectTotal = 0;
         
-        for(int i = 0; i < studentList[0].getSubjectCount(); i++){
+        for(int i = 0; i < studentCount; i++){
             for(int k = 0; k < studentList[i].getSubjectCount(); k++){
                 String stuName = studentList[i].getSubject(k);
                 int exists = 0;
@@ -42,7 +42,7 @@ public class MyApp
         }
         
         for(int i = 0; i < subjectTotal; i++){
-            String subjectName = studentList[0].getSubject(i); //과목 이름 저장
+            String subjectName = allSubjects[i]; //과목 이름 저장
             
             int maxScore = -1;
             int minScore = 101;
@@ -72,7 +72,7 @@ public class MyApp
                         }
                         if(score < minScore){
                             minScore = score;
-                            maxStudentName = name;
+                            minStudentName = name;
                         }
                     }
                 }

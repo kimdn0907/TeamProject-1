@@ -15,6 +15,8 @@ public class Student
     private int count = 0;
     static int totalStudents = 0;
     
+    
+    
     public Student(String name, int studentId) {
         this.name = name;
         this.studentId = studentId;
@@ -54,6 +56,7 @@ public class Student
         for (int i = 0; i < count; i++) {
             System.out.println(subjects[i] + " : " + grades[i].getStrGPA() + ", " + scores[i] + "점");
         }
+        
         System.out.println();
         double gpa = getGPA();
         gpa = (int)(gpa * 100) / 100.0;

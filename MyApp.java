@@ -72,13 +72,13 @@ public class MyApp
                 sc.nextLine();
 
                 //학생 이름 입력받기
-                System.out.print("학생 이름을 입력해주세요. : ");
+                System.out.print("학생 이름을 입력해주세요 : ");
                 String studentName = sc.nextLine();
 
                 //학번 입력받기 (문자 입력 시 오류메세지 출력하고 다시 입력하게 하기)
                 int studentId;
                 while (true){
-                    System.out.print("학번을 입력해주세요. : ");
+                    System.out.print("학번을 입력해주세요 : ");
                     studentId = 0;
                     try {
                         studentId = sc.nextInt();
@@ -97,7 +97,7 @@ public class MyApp
 
                 //과목 입력 받기 -> 0입력 시 과목 입력 받는 것을 종료하고 학생 정보 입력으로 돌아감
                 while (true){
-                    System.out.print("과목을 입력하시겠습니까? (1: 예 / 0: 종료)");
+                    System.out.print("과목을 입력하시겠습니까? (1: 예 / 0: 종료) :");
                     int addSubject = sc.nextInt();
                     if (addSubject == 0)
                         break;
@@ -105,13 +105,13 @@ public class MyApp
                         sc.nextLine();
 
                         //과목 이름 입력받기
-                        System.out.print("과목 이름을 입력해주세요. : ");
+                        System.out.print("과목 이름을 입력해주세요 : ");
                         String subjectName = sc.nextLine();
 
                         //과목에 대한 점수 입력받기 (0~100 사이의 입력을 벗어나면 오류메세지 출력 / 숫자가 아닌 입력을 받으면 오류메세지 출력)
                         while (true){
                             try {
-                                System.out.print("점수를 입력해 주세요. : ");
+                                System.out.print("점수를 입력해 주세요 : ");
                                 int score = sc.nextInt();
                                 sc.nextLine();
                                 if (score >= 0 && score <= 100){
@@ -134,6 +134,7 @@ public class MyApp
                 student.displayResult();
             }
         }
+<<<<<<< HEAD
 
         public void displayResultWithRank() {
             System.out.println("===== 결과 =====");
@@ -153,6 +154,14 @@ public class MyApp
 
         public String getScore(int index) {
         return subjects[index];
+=======
+        //전체 학생 성적 출력 후 전체 학생 수 출력 -> 전체 석차, 최고/최저, 평균점수 출력에 사용
+        printAll(studentList, studentCount);
+        System.out.println("전체 학생 수는 " + Student.totalStudents + "명 입니다.");
+        
+        //더 이상 입력받을 것이 없으면 Scanner 종료하기
+        sc.close();
+>>>>>>> 2acc6b9cc7bdefed2159d296c4160f0ea2bab82d
     }
 
     public void setRank(int rank) {

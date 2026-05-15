@@ -7,14 +7,16 @@
  */
 public class Student
 {
-    private String name;
-    private int studentId;
-    private String[] subjects = new String[100];
-    private int[] scores = new int[100];
-    private Grade[] grades = new Grade[100];
-    private int count = 0;
+    private String name; // 학생 이름을 저장하는 변수
+    private int studentId; // 학생 학번
+    private String[] subjects = new String[100]; // 과목 이름 저장
+    private int[] scores = new int[100]; //과목별 점수
+    private Grade[] grades = new Grade[100]; //과목별 등급 학점
+    private int count = 0; //입력된 과목 개수
     static int totalStudents = 0;
     
+    int totalScore = 0;
+    int subjectsStudentCount = 0;
     
     
     public Student(String name, int studentId) {
@@ -62,5 +64,18 @@ public class Student
         gpa = (int)(gpa * 100) / 100.0;
         System.out.println("최종 학점 : " + gpa);
         System.out.println();
+    }
+    public int getSubjectCount(){
+        return count;
+    }
+    
+    public String getSubject(int index){
+        return subjects[index];
+    }
+    public int getScore(int index){
+        return scores[index];
+    }
+    public String getName(){
+        return name;
     }
 }

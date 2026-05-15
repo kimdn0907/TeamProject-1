@@ -8,11 +8,71 @@ import java.util.Scanner;
  */
 public class MyApp
 {
-    public static void printAll(Student[] studentList, int studentCount){
+    public static void printAll(Student[] studentList, int studentCount){//전체 학생 성적 출력
         for (int i = 0; i < studentCount; i++){
             studentList[i].displayResult();
         }
     }
+    
+    //평균점수 소수점 일단 나중에ㅔ
+    public static double cutTwo(double value){
+        return (int)(value * 100)/ 100.0;
+    }
+    
+    public static void printSubjectStatics(Student[] studentList, int studentCount){//과목별 통계 출력 메소드
+        System.out.println("===== 과목별 통계 =====");
+        for(int i = 0; i < studentList[0].getSubjectCount(); i++){
+            String subjectName = studentList[0].getSubject(i); //과목 이름 저장
+            
+            int maxScore = -1;
+            int minScore = 101;
+            
+            String maxStudentName = "";
+            String minStudentName = "";
+            
+            int totalScore = 0; //과목 점수 총합 저장
+            int subjectStudentCount = 0; //해당 과목을 입력한 학생 수 저장
+            
+            System.out.print(subjectName + "학생별 점수 :");
+            
+            for(int j = 0; j < studentCount; j++){
+                for(int k = 0; k< studentList[j].getSubjectCount(); k++){
+                    if(studentList[j].getSubject(k).equals(subjectName)){
+                        int score = studentList[j].getScore(k);
+                        String name = studentList[j].getName();
+                        
+                        System.out.print("[" + score + ":" + name + "]");
+                        
+                        totalScore += score;
+                        subjectStudentCount++;
+                        
+                        if(score > maxScore){
+                            maxScore = score;
+                            maxStudentName = name;
+                        }
+                        if(score < minScore){
+                            minScore = score;
+                            maxStudentName = name;
+                        }
+                        if(score < minScore){
+                            minScore = score;
+                            minStudentName = name;
+                        }
+                    }
+                }
+            }
+        }
+        double averageScore = (double)totalScore / subjectStudentCount; // 과목 평균점수 계산
+        averageScore = cutTwo(averageScore);
+    
+        System.out.println();
+        System.out.println(subjectName + "최고점 :" + maxScore + "점, 학생 이름:" + maxStudentName);
+        System.out.println(subjectName + "최저점 : " + minScore + "점, 학생 이름:" + minStudentName);
+        System.out.println(subjectName + "평균점수 : " + averageScore + "점");
+        System.out.println();
+    }
+
+    
     
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);

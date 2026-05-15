@@ -8,20 +8,19 @@ import java.util.Scanner;
  */
 public class MyApp
 {   
-        public static void printAll(Student[] studentList, int studentCount){
-        calculateRank(studentList, studentCount);
-
+    public static void printAll(Student[] studentList, int studentCount){
         for (int i = 0; i < studentCount; i++){
-            studentList[i].displayResultWithRank();
+            studentList[i].displayResult();
         }
     }
     
-        public static double cutTwo(double value){
+    public static double cutTwo(double value){
         return (int)(value * 100)/ 100.0;
     }
     
-    public static void printSubjectStatics(Student[] studentList, int studentCount){//과목별 통계 출력 메소드
+    public static void printSubjectStatistics(Student[] studentList, int studentCount){ //과목별 통계 출력 메소드
         System.out.println("===== 과목별 통계 =====");
+        
         for(int i = 0; i < studentList[0].getSubjectCount(); i++){
             String subjectName = studentList[0].getSubject(i); //과목 이름 저장
             
@@ -55,42 +54,60 @@ public class MyApp
                             minScore = score;
                             maxStudentName = name;
                         }
-                        if(score < minScore){
-                            minScore = score;
-                            minStudentName = name;
-                        }
                     }
                 }
             }
+        
+            double averageScore = (double)totalScore / subjectStudentCount; // 과목 평균점수 계산
+            averageScore = cutTwo(averageScore);
+        
+            System.out.println();
+            System.out.println(subjectName + "최고점 :" + maxScore + "점, 학생 이름:" + maxStudentName);
+            System.out.println(subjectName + "최저점 : " + minScore + "점, 학생 이름:" + minStudentName);
+            System.out.println(subjectName + "평균점수 : " + averageScore + "점");
+            System.out.println();
         }
-        double averageScore = (double)totalScore / subjectStudentCount; // 과목 평균점수 계산
-        averageScore = cutTwo(averageScore);
-    
-        System.out.println();
-        System.out.println(subjectName + "최고점 :" + maxScore + "점, 학생 이름:" + maxStudentName);
-        System.out.println(subjectName + "최저점 : " + minScore + "점, 학생 이름:" + minStudentName);
-        System.out.println(subjectName + "평균점수 : " + averageScore + "점");
         System.out.println();
     }
     
-    public static void calculateRank(Student[] studentList, int studentCount) {
-        for(int i = 0; i < studentCount; i++) {
+    public static void printNameAndGPA(Student[] studentList, int studentCount){
+        System.out.println("===== 전체 학생 학점 요약 =====");
+        
+        for(int i = 0; i < studentCount; i++){
+            double gpa = cutTwo(studentList[i].getGPA());
+            System.out.print("[" + studentList[i].getName() + "," + gpa + "]");
+        }
+        
+        System.out.println();
+        System.out.println();
+    }
+    
+    public static void printGPARank(Student[] studentList, int studentCount){
+        System.out.println("===== 학생 전체 평균학점 석차 =====");
+        
+        int[] rankList = new int[studentCount];
+        
+        for(int i = 0; i < studentCount; i++){
             int rank = 1;
-
-            for(int j = 0; j < studentCount; j++) {
-                if(studentList[i].getGPA() < studentList[j].getGPA()) {
+            
+            for(int j = 0; j < studentCount; j++){
+                if(studentList[i].getGPA() < studentList[j].getGPA()){
                     rank++;
                 }
             }
-            studentList[i].setRank(rank);
+            rankList[i] = rank;
         }
-    }
-
-    public static void printNameAndGPA(Student[] studentList, int studentCount){
-        System.out.println("===== 전체 학생 학점 요약 =====");
-        for(int i = 0; i < studentCount; i ++){
-            double gpa = cutTwo(studentList[i].getGPA());
+        
+        for(int rank = 1; rank <= studentCount; rank++){
+            for(int i = 0; i < studentCount; i++){
+                if(rankList[i] == rank){
+                    double gpa = cutTwo(studentList[i].getGPA());
+                    System.out.println(rank + "등 : " + studentList[i].getName() + "," + gpa);
+                }
             }
+        }
+        
+        System.out.println();
     }
     
     public static void main(String[] args){
@@ -173,52 +190,23 @@ public class MyApp
                 student.displayResult();
             }
         }
-    }
-        public void displayResultWithRank() {
-            System.out.println("===== 결과 =====");
-            System.out.println("이름:" + name);
-            System.out.println("~~~");
-            System.out.println("석차: " + rank + "등");
-            System.out.println();
-        }
-
-        public name getsubjectCount() {
-            return name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getScore(int index) {
-        return subjects[index];
         
-        //전체 학생 성적 출력 후 전체 학생 수 출력 -> 전체 석차, 최고/최저, 평균점수 출력에 사용
-        printAll(studentList, studentCount);
-        System.out.println("전체 학생 수는 " + Student.totalStudents + "명 입니다.");
-        
+        if(studentCount>0){
+            //전체 학생 성적 출력
+            printAll(studentList, studentCount);
+            //과목별 최고점, 최저점, 평균점수 출력
+            printSubjectStatistics(studentList,studentCount);
+            //[이름, 학점] 형태로 전체 학생 학점 요약 출력
+            printNameAndGPA(studentList, studentCount);
+            //평균학점 기준 전체 학생 석차 출력
+            printGPARank(studentList, studentCount);
+            //전체 학생 수 출력
+            System.out.println("전체 학생 수는" + Student.totalStudents + "명 입니다.");
+        }
+        else{
+            System.out.println("입력된 학생 정보가 없습니다!");
+        }
         //더 이상 입력받을 것이 없으면 Scanner 종료하기
         sc.close();
     }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public int sampleMethod(int y)
-    {
-        // 여기에 코드를 작성하세요
-        return y;
-    }
-
-    //전체 학생 성적 출력 후 전체 학생 수 출력 -> 전체 석차, 최고/최저, 평균점수 출력에 사용
-    printAll(studentList, studentCount);
-    System.out.println("전체 학생 수는" + Student.totalStudents + "명 입니다.");
-
-    //더 이상 입력받을 것이 없으면 Scanner 종료하기
-    sc.close();
 }

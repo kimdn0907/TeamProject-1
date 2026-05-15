@@ -14,11 +14,7 @@ public class Student
     private Grade[] grades = new Grade[100]; //과목별 등급 학점
     private int count = 0; //입력된 과목 개수
     static int totalStudents = 0;
-    
-    int totalScore = 0;
-    int subjectsStudentCount = 0;
-    
-    
+
     public Student(String name, int studentId) {
         this.name = name;
         this.studentId = studentId;
@@ -60,11 +56,14 @@ public class Student
         }
         
         System.out.println();
+        
         double gpa = getGPA();
         gpa = (int)(gpa * 100) / 100.0;
+        
         System.out.println("최종 학점 : " + gpa);
         System.out.println();
     }
+    
     public int getSubjectCount(){
         return count;
     }
@@ -72,9 +71,11 @@ public class Student
     public String getSubject(int index){
         return subjects[index];
     }
+    
     public int getScore(int index){
         return scores[index];
     }
+    
     public String getName(){
         return name;
     }

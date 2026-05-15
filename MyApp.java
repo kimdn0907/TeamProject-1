@@ -76,7 +76,7 @@ public class MyApp
         System.out.println("===== 전체 학생 학점 요약 =====");
         for(int i = 0; i < studentCount; i ++){
             double gpa = cutTwo(studentList[i].getGPA());
-            
+            ㅇㅇㅇ
         }
     }
     
